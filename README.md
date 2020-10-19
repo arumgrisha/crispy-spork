@@ -8,5 +8,3 @@
 
 Помещаем файл *srm.sh* в *~/bin*.  
 Открываем файл *~/.bash_profile* и дописываем *export PATH="${PATH}:~/bin"* .
-
-## Test
