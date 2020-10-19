@@ -1,21 +1,15 @@
 #!/bin/bash
 #
-rec_dir="~/RECYCLE"
-if [ ! -e "$rec_dir" ]
-	then
-		echo $rec_dir doesn`t exist\n the directory will be created
-		mkdir $rec_dir 
-	else
-		echo Deleting old files
-		find $rec_dir -type f -ctime 7 > temp_string
-		if [ "${#temp_string}" -ne "0" ]
-			then 
-				find $temp_string -type f -delete 
-		fi
-	fi
-if [ -e $1 ]
-	then
-		tar --remove-files -zcf $rec_dir/$1$(date +%F_%H:%M).tar.gzip $1
-	else
-		echo File $1 doesn`t exist
-fi
+#rec_dir="~/RECYCLE"
+
+echo " "
+rm_file_string=$1 # вводить можно только название файла в которой находитесь. В названии не должно быть пути. В директории RECYCLE вводить нельзя.
+touch ./$rm_file_string #для отладки, потом удалить
+cp ./$rm_file_string ~/RECYCLE #cp заменить на mv
+echo $rm_file_string
+gzip ~/RECYCLE/$rm_file_string
+echo "Succeed in srm "$rm_file_string""
+rm ./$rm_file_string #для отладки, потом удалить
+rm_file_string_2="$rm_file_string"".gz" #для отладки, потом удалить
+rm ~/RECYCLE/$rm_file_string_2 #для отладки, потом удалить
+
